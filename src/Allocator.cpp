@@ -55,6 +55,8 @@ static void PatchBiggerMemoryRegion() {
                        &exponent, sizeof(exponent)); // cmp edi, imm8
     Common::PatchBytes(reinterpret_cast<void *>(Offsets::PATCH_SMEM_SMALL_LARGE_CMP_ISVALID + 2),
                        &exponent, sizeof(exponent)); // cmp ecx, imm8
+    Common::PatchBytes(reinterpret_cast<void *>(Offsets::PATCH_SMEM_SMALL_LARGE_CMP_GETSIZE + 2),
+                       &exponent, sizeof(exponent)); // cmp dl, imm8
 
     // Bitfield packing/unpacking
     Common::PatchBytes(reinterpret_cast<void *>(Offsets::PATCH_SMEM_PACK_SHR_ENCODE + 2), &shift,
@@ -63,6 +65,8 @@ static void PatchBiggerMemoryRegion() {
                        sizeof(shift)); // shl eax, imm8
     Common::PatchBytes(reinterpret_cast<void *>(Offsets::PATCH_SMEM_PACK_SHL_DECODE + 2), &shift,
                        sizeof(shift)); // shl edx, imm8
+    Common::PatchBytes(reinterpret_cast<void *>(Offsets::PATCH_SMEM_PACK_SHL_DECODE_GETSIZE + 2),
+                       &shift, sizeof(shift)); // shl esi, imm8
 }
 
 void Initialize() { PatchBiggerMemoryRegion(); }
